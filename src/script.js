@@ -36,13 +36,20 @@ function createForm(semCount) {
     var form = document.getElementById("form");
     form.removeChild(document.getElementById("subInput"));
     for (var i = 1; i <= semCount; i++) {
-        var div = document.createElement("div");
-        div.id = `sem-${i}-input`;
-        form.appendChild(div);
+        var div1 = document.createElement("div");
+        div1.id = `sem-${i}-input`;
+        div1.className = "container";
+        form.appendChild(div1);
         var heading = document.createElement("h3");
         heading.innerHTML = `Semester ${i}:`;
-        div.appendChild(heading);
+        div1.appendChild(heading);
+        var div2 = document.createElement("div");
+        div2.className = "row";
+        div1.appendChild(div2);
         for (var j = 1; j <= array[i - 1]; j++) {
+            var div = document.createElement("div");
+            div.className = "col";
+            div2.appendChild(div);
             var nameLabel = document.createElement("label");
             nameLabel.innerHTML = `Course Name ${j}:`;
             div.appendChild(nameLabel);
@@ -132,6 +139,7 @@ function getIN(semCount, array) {
     }
     calculateGPA(array, semCount, sem);
     console.log(sem);
+
 }
 
 var calGrade = (grade) => {
@@ -151,10 +159,6 @@ var calGrade = (grade) => {
         case "U":
             return 0;
     }
-}
-
-function printRes() {
-
 }
 
 function calculateGPA(array, semCount, sem) {
@@ -180,4 +184,40 @@ function calculateCGPA(arr) {
     }
     CGPA /= arr.length;
     console.log(CGPA);
+    printRes(arr);
+}
+
+
+function printRes(sem) {
+
+    var form = document.getElementById("form");
+    document.body.removeChild(form);
+    var h3 = document.createElement('h3');
+    h3.innerHTML = 'Result:';
+    document.body.appendChild(h3);
+    var lineBreak = document.createElement("br");
+    document.body.appendChild(lineBreak);
+    var table = document.createElement('table');
+    table.setAttribute('border', '1');
+    var tr = document.createElement('tr');
+    var th1 = document.createElement('th');
+    th1.innerHTML = "Semester";
+    var th2 = document.createElement('th');
+    th2.innerHTML = "GPA";
+    tr.appendChild(th1);
+    tr.appendChild(th2);
+    table.appendChild(tr);
+    for (var j = 0; j < sem.length; j++) {
+        var td1 = document.createElement('td');
+        td1.innerHTML = sem[j];
+        var td2 = document.createElement('td');
+        td2.style.textAlign = 'right';
+        td2.innerHTML = sem[j].toFixed(2);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        table.appendChild(tr);
+        tr = document.createElement('tr');
+        table.appendChild(tr);
+    }
+    document.body.appendChild(table)
 }

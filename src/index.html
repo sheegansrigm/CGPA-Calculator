@@ -6,6 +6,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CGPA</title>
     <script src="script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            display: block;
+            margin: 0 auto;
+            font-family: sans-serif;
+            margin: 20px;
+            text-align: center;
+            background-color: #f8f3e5;
+            text-align: center;
+            color: #c07a00;
+        }
+        
+        h1,
+        h3 {
+            text-align: center;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input,
+        select {
+            width: 150px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            background-color: #ffd9b3;
+            display: block;
+            margin: 10px auto;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        
+        input:hover,
+        select:hover {
+            border-color: #a6a285;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        button,
+        #resButton,
+        #subbutton {
+            background-color: #a6a285;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+            border-radius: 10px;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15);
+            border: 2px solid #a6a285;
+            background: linear-gradient(to bottom, #e27849, #cc5500);
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        #resButton:hover,
+        #subbutton:hover,
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to bottom, #cc5500, #e27849);
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        #result-table {
+            margin-top: 20px;
+        }
+        
+        #result-table th {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        #result-table td {
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,13 +113,14 @@
     <form id="form">
         <div id="semInput">
             <label for="semCount">Number of Semesters:</label>
-            <input type="number" name="semCount" id="semCount">
+            <input type="number" name="semCount" id="semCount" required>
             <button type="button" onclick="cal()">Submit</button>
         </div>
         <div id="subInput">
 
         </div>
     </form>
+    <table></table>
 </body>
 
 </html>
