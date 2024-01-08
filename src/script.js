@@ -184,17 +184,20 @@ function calculateCGPA(arr) {
     }
     CGPA /= arr.length;
     console.log(CGPA);
-    printRes(arr);
+    printRes(arr, CGPA);
 }
 
 
-function printRes(sem) {
-
+function printRes(sem, CGPA) {
     var form = document.getElementById("form");
     document.body.removeChild(form);
-    var h3 = document.createElement('h3');
-    h3.innerHTML = 'Result:';
-    document.body.appendChild(h3);
+    var h2 = document.createElement('h2');
+    h2.innerHTML = 'Result:';
+    document.body.appendChild(h2);
+    var p = document.createElement("p");
+    p.innerHTML = "CGPA is :" + CGPA;
+    p.id = "finalCGPA";
+    document.body.appendChild(p);
     var lineBreak = document.createElement("br");
     document.body.appendChild(lineBreak);
     var table = document.createElement('table');
@@ -208,16 +211,30 @@ function printRes(sem) {
     tr.appendChild(th2);
     table.appendChild(tr);
     for (var j = 0; j < sem.length; j++) {
-        var td1 = document.createElement('td');
-        td1.innerHTML = sem[j];
-        var td2 = document.createElement('td');
-        td2.style.textAlign = 'right';
-        td2.innerHTML = sem[j].toFixed(2);
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        table.appendChild(tr);
-        tr = document.createElement('tr');
+        tr = document.createElement("tr");
+        th1 = document.createElement('th');
+        th1.innerHTML = romanize(j + 1);
+        th2 = document.createElement('th');
+        th2.innerHTML = sem[j];
+        tr.appendChild(th1);
+        tr.appendChild(th2);
         table.appendChild(tr);
     }
     document.body.appendChild(table)
+
+}
+
+function romanize(num) {
+    if (isNaN(num))
+        return NaN;
+    var digits = String(+num).split(""),
+        key = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM",
+            "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC",
+            "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
+        ],
+        roman = "",
+        i = 3;
+    while (i--)
+        roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+    return Array(+digits.join("") + 1).join("M") + roman;
 }
