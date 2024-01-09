@@ -138,7 +138,7 @@ function getIN(semCount, array) {
         sem[i - 1] = course;
     }
     calculateGPA(array, semCount, sem);
-    console.log(sem);
+    //console.log(sem);
 
 }
 
@@ -163,6 +163,7 @@ var calGrade = (grade) => {
 
 function calculateGPA(array, semCount, sem) {
     var arr = new Array(semCount);
+    var cre = new Array(semCount);
     for (var j = 0; j < semCount; j++) {
         var gpa = 0;
         var credit = 0;
@@ -172,18 +173,22 @@ function calculateGPA(array, semCount, sem) {
         }
         //console.log(gpa / credit);
         arr[j] = gpa / credit;
+        cre[j] = credit;
     }
-    console.log(arr);
-    calculateCGPA(arr);
+    //console.log(arr);
+    calculateCGPA(arr, cre);
 }
 
-function calculateCGPA(arr) {
+function calculateCGPA(arr, cre) {
     var CGPA = 0;
+    var l = 0;
     for (var i = 0; i < arr.length; i++) {
-        CGPA += arr[i];
+        CGPA += arr[i] * cre[i];
+        l += cre[i];
     }
-    CGPA /= arr.length;
-    console.log(CGPA);
+
+    CGPA = CGPA / l;
+    //console.log(CGPA);
     printRes(arr, CGPA);
 }
 
@@ -220,8 +225,7 @@ function printRes(sem, CGPA) {
         tr.appendChild(th2);
         table.appendChild(tr);
     }
-    document.body.appendChild(table)
-
+    document.body.appendChild(table);
 }
 
 function romanize(num) {
